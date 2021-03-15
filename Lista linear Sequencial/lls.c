@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 
 /** Funções de gerenciamento
 *
@@ -9,10 +10,10 @@
 * - Exibos os elementos da estrutura
 * - Buscar por um elemento na estrutura
 * - Inserir elementos na estrutura
-*       - Inserção no início
-*       - Inserção no fim
+*       - Inserção no início (Implementado)
+*       - Inserção no fim (Implementado)
 *       - Inserção ordenada pela chave
-*       - Inserção posição indicada (Implementa)
+*       - Inserção posição indicada (ImplementadI)
 * - Excluir elementos na estrutura
 * - Reinicializar a estrutura
 */
@@ -93,12 +94,33 @@ int insertElementPos (List *list, REGISTER reg, int posToInsert) {
 int insertElementAtBegin (List *list, REGISTER reg) {
     int i;
 
-    // A posição precisa existir e a lista não estiver cheia
+    // A lista não estiver cheia
     if (list->elementsNumber != MAX) {
         for (i = list->elementsNumber; i > 0; i--)
             list->REGISTER[i] = list->REGISTER[i - 1];
 
         list->REGISTER[0] = reg;
+
+        // Aumenta um elemento na lista
+        list->elementsNumber++;
+
+        return 0;
+    }
+
+    return 1;
+}
+
+int insertElementAtEnd (List *list, REGISTER reg) {
+    int i;
+
+    // A lista não estiver cheia
+    if (list->elementsNumber != MAX) {
+
+        // se a lista tiver elementos, coloca final da lista - senão, coloca o primeiro elemento
+        if (list->elementsNumber > 0)
+            list->REGISTER[list->elementsNumber + 1] = reg;
+        else
+            list->REGISTER[list->elementsNumber] = reg;
 
         // Aumenta um elemento na lista
         list->elementsNumber++;
@@ -133,6 +155,7 @@ void restartList (List *list) {
     list->elementsNumber = 0;
 }
 
+/** ***************************************************************************************************************************************** */
 
 int main () {
 
@@ -146,11 +169,12 @@ int main () {
 
     startList(list);
 
-    insertElementAtBegin(list, reg1);
-    insertElementAtBegin(list, reg2);
-    //insertElementAtBegin(list, reg3);
+    insertElementPos(list, reg1, 0);
+    //insertElementAtEnd(list, reg2);
+    //insertElementAtEnd(list, reg3);
+    //mockList(list);
 
-    //removeElement(list, 10);
+    //removeElement(list, 3);
 
     showElements(list);
     //printf("%d\n", linearSearch(list, 4));
@@ -161,3 +185,16 @@ int main () {
 
     return 0;
 }
+
+void mockList (List *list) {
+    int i;
+
+    for (i = 0; i < MAX; i++) {
+        //printf("teste\n");
+        REGISTER reg;
+        reg.key = i;
+        insertElementAtEnd(list, reg);
+    }
+}
+
+
