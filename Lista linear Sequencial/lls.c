@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <conio.h>
 
-/** Funções de gerenciamento
+/** FunÃ§Ãµes de gerenciamento
 *
-* Implementar funções para:
+* Implementar funÃ§Ãµes para:
 *
 * - Inicializar a estrutura
-* - Retornar a quantidade de elementos válidos
+* - Retornar a quantidade de elementos vï¿½lidos
 * - Exibos os elementos da estrutura
 * - Buscar por um elemento na estrutura
 * - Inserir elementos na estrutura
-*       - Inserção no início (Implementado)
-*       - Inserção no fim (Implementado)
-*       - Inserção ordenada pela chave
-*       - Inserção posição indicada (ImplementadI)
+*       - InserÃ§Ã£o no inÃ­cio (Implementado)
+*       - InserÃ§Ã£o no fim (Implementado)
+*       - InserÃ§Ã£o ordenada pela chave
+*       - InserÃ§Ã£o posiÃ§Ã£o indicada (ImplementadI)
 * - Excluir elementos na estrutura
 * - Reinicializar a estrutura
 */
@@ -34,6 +34,8 @@ typedef struct {
     REGISTER REGISTER[MAX];
     int elementsNumber;
 }List;
+
+void mockList(List *list);
 
 /** Inicia lista com 0 elementos */
 void startList (List *list) {
@@ -59,22 +61,22 @@ int linearSearch (List *list, TYPEKEY keyToSearch) {
     int i;
 
     for (i = 0; i < list->elementsNumber; i++) {
-      if (keyToSearch == list->REGISTER[i].key)
-        return i; // retorna posição do elemento
+        if (keyToSearch == list->REGISTER[i].key)
+            return i; // retorna posiÃ§Ã£o do elemento
     }
 
-    return -1; // laço percorrido e nenhuma posição encontrada
+    return -1; // laÃ§o percorrido e nenhuma posiÃ§Ã£o encontrada
 }
 
-/** Inserir elemento na lista pela posição indicada */
+/** Inserir elemento na lista pela posiÃ§Ã£o indicada */
 int insertElementPos (List *list, REGISTER reg, int posToInsert) {
 
-    // A posição precisa existir e a lista não estiver cheia
+    // A posiï¿½ï¿½o precisa existir e a lista nï¿½o estiver cheia
     if (list->elementsNumber != MAX && posToInsert >= 0 && posToInsert <= MAX) {
 
         int i;
 
-        // regra de inserção (resposiciona os outros elementos)
+        // regra de inserï¿½ï¿½o (resposiciona os outros elementos)
         for (i = list->elementsNumber; i > posToInsert; i--)
             list->REGISTER[i] = list->REGISTER[i - 1];
 
@@ -94,7 +96,7 @@ int insertElementPos (List *list, REGISTER reg, int posToInsert) {
 int insertElementAtBegin (List *list, REGISTER reg) {
     int i;
 
-    // A lista não estiver cheia
+    // A lista nï¿½o estiver cheia
     if (list->elementsNumber != MAX) {
         for (i = list->elementsNumber; i > 0; i--)
             list->REGISTER[i] = list->REGISTER[i - 1];
@@ -113,14 +115,9 @@ int insertElementAtBegin (List *list, REGISTER reg) {
 int insertElementAtEnd (List *list, REGISTER reg) {
     int i;
 
-    // A lista não estiver cheia
+    // A lista nÃ£o estiver cheia
     if (list->elementsNumber != MAX) {
-
-        // se a lista tiver elementos, coloca final da lista - senão, coloca o primeiro elemento
-        if (list->elementsNumber > 0)
-            list->REGISTER[list->elementsNumber + 1] = reg;
-        else
-            list->REGISTER[list->elementsNumber] = reg;
+        list->REGISTER[list->elementsNumber] = reg;
 
         // Aumenta um elemento na lista
         list->elementsNumber++;
@@ -169,10 +166,10 @@ int main () {
 
     startList(list);
 
-    insertElementPos(list, reg1, 0);
+    //insertElementPos(list, reg1, 0);
     //insertElementAtEnd(list, reg2);
     //insertElementAtEnd(list, reg3);
-    //mockList(list);
+    mockList(list);
 
     //removeElement(list, 3);
 
