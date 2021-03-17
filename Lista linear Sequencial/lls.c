@@ -31,7 +31,8 @@ typedef struct {
 }REGISTER;
 
 typedef struct {
-    REGISTER REGISTER[MAX];
+    // +1 para elemento sentinela
+    REGISTER REGISTER[MAX + 1];
     int elementsNumber;
 }List;
 
@@ -66,6 +67,24 @@ int linearSearch (List *list, TYPEKEY keyToSearch) {
     }
 
     return -1; // laço percorrido e nenhuma posição encontrada
+}
+
+/** Busca otimizada com elemento sentinela - Reduz as comparações */
+int sentinelSearch (List *list, TYPEKEY keyToSearch) {
+    int i = 0;
+
+    // elemento sentinela
+    list->REGISTER[list->elementsNumber].key = keyToSearch;
+
+    /* Se o elemento existir, o laço acaba.*/
+    while (keyToSearch != list->REGISTER[i].key)
+        i++;
+
+    if (list->elementsNumber == i)
+        return -1;
+
+    return i;
+
 }
 
 /** Inserir elemento na lista pela posição indicada */
@@ -174,7 +193,7 @@ int main () {
     //removeElement(list, 3);
 
     showElements(list);
-    //printf("%d\n", linearSearch(list, 4));
+    printf("%d\n", sentinelSearch(list, 1));
 
     printf("Numero de elementos: %d\n", listLenght(list));
 
@@ -190,7 +209,7 @@ void mockList (List *list) {
         //printf("teste\n");
         REGISTER reg;
         reg.key = i;
-        insertElementAtEnd(list, reg);
+        insertElementAtBegin(list, reg);
     }
 }
 
