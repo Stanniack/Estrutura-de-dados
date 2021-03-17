@@ -148,11 +148,30 @@ int insertElementAtEnd (List *list, REGISTER reg) {
 }
 
 
-/** Remover elemento */
-int removeElement (List *list, TYPEKEY keyToRemove) {
+/** Remover elemento com busca sequencial */
+int removeElementLinear (List *list, TYPEKEY keyToRemove) {
 
     int i, elementPosition;
     elementPosition = linearSearch(list, keyToRemove);
+
+    // se o elemento n existir na lista, retorna falso
+    if (elementPosition == -1)
+        return 1;
+
+    // reposiciona elementos
+    for (i = elementPosition; i < list->elementsNumber - 1; i++)
+        list->REGISTER[i] = list->REGISTER[i + 1];
+
+    list->elementsNumber--;
+
+    return 0;
+}
+
+/** Remover elemento com busca sequencial otimizada */
+int removeElementSentinel (List *list, TYPEKEY keyToRemove) {
+
+    int i, elementPosition;
+    elementPosition = sentinelSearch(list, keyToRemove);
 
     // se o elemento n existir na lista, retorna falso
     if (elementPosition == -1)
