@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <malloc.h>
 
 #define MAX 50
 #define INVALID -1
@@ -61,45 +62,64 @@ push (STACK *stack, ELEMENT *elementToInsert) {
 
     /* Guarda o antigo topo */
     ELEMENT *aux = stack->top;
+
     /* O novo elemento é o topo*/
     stack->top = elementToInsert;
+
     /* O antigo topo é o next */
     elementToInsert->next = aux;
 
 }
 
-ELEMENT* pop (STACK *stack) {
+int pop (STACK *stack) {
 
     if (stack->top != NULL) {
         ELEMENT *aux = stack->top;
         stack->top = stack->top->next;
+        free(aux);
 
-        return aux;
+        return TRUE;
     }
 
-    return NULL;
+    return FALSE;
 }
 
 ELEMENT* topStack (STACK *stack) {
     return stack->top != NULL ? stack->top : NULL;
 }
 
+restartStack (STACK *stack) {
+    ELEMENT *position = stack->top;
+
+    while (position != NULL) {
+        ELEMENT *remove = position;
+        position = position->next;
+        free(remove);
+    }
+
+    stack->top = NULL;
+
+}
+
 int main () {
-    ELEMENT ELEMENT, ELEMENT2, ELEMENT3;
+    ELEMENT ELEMENT, ELEMENT2, ELEMENT3, ELEMENT4;
     STACK stack;
 
     ELEMENT.key = 5;
     ELEMENT2.key = 7;
     ELEMENT3.key = 2;
+    ELEMENT4.key = 10;
 
     startStack(&stack);
     push(&stack, &ELEMENT);
     push(&stack, &ELEMENT2);
     push(&stack, &ELEMENT3);
     pop(&stack);
+    push(&stack, &ELEMENT4);
+    //restartStack(&stack);
 
     printf("%d\n", stackLenght(&stack));
-    printf("%d\n", topStack(&stack));
+    printf("%d\n", topStack(&stack)->key);
 
     showElements(&stack);
 
