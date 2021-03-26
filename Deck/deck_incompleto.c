@@ -72,7 +72,9 @@ void insertElementEnd (DECK *deck, ELEMENT* element) {
     aux->previous = deck->headNode->previous;
 
     deck->headNode->previous = aux;
-    deck->headNode->next = aux;
+
+    // Não funciona:
+    //deck->headNode->next->previous = aux; ou aux->previous->next
 
 }
 
