@@ -14,7 +14,7 @@ typedef int TYPEKEY;
  *  Inicializar
  *  Retornar a quantidade de elementos válidos
  *  Exibir os elementos
- *  Inserir elementos (Push)
+ *  Inserir elementos (No ínício e no fim)
  *  Remover elementos (Pop)
  * */
 
