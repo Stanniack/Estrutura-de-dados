@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <malloc.h>
 
 #define MAX 50
@@ -60,8 +59,10 @@ void showElements (STACK *stack) {
 
 void push (STACK *stack, ELEMENT *elementToInsert) {
 
+    /* Aloca memória */
+    ELEMENT *aux = (ELEMENT*) malloc(sizeof(ELEMENT));
     /* Guarda o antigo topo */
-    ELEMENT *aux = stack->top;
+    aux = stack->top;
 
     /* O novo elemento é o topo*/
     stack->top = elementToInsert;
@@ -115,7 +116,7 @@ int main () {
     push(&stack, &ELEMENT2);
     push(&stack, &ELEMENT3);
     //pop(&stack);
-    push(&stack, &ELEMENT4);
+    //push(&stack, &ELEMENT4);
     //restartStack(&stack);
 
     printf("%d\n", stackLenght(&stack));
