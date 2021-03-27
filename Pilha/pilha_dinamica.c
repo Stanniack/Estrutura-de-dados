@@ -58,7 +58,7 @@ void showElements (STACK *stack) {
     printf("\n");
 }
 
-push (STACK *stack, ELEMENT *elementToInsert) {
+void push (STACK *stack, ELEMENT *elementToInsert) {
 
     /* Guarda o antigo topo */
     ELEMENT *aux = stack->top;
@@ -88,7 +88,7 @@ ELEMENT* topStack (STACK *stack) {
     return stack->top != NULL ? stack->top : NULL;
 }
 
-restartStack (STACK *stack) {
+void restartStack (STACK *stack) {
     ELEMENT *position = stack->top;
 
     while (position != NULL) {
@@ -114,12 +114,13 @@ int main () {
     push(&stack, &ELEMENT);
     push(&stack, &ELEMENT2);
     push(&stack, &ELEMENT3);
-    pop(&stack);
+    //pop(&stack);
     push(&stack, &ELEMENT4);
     //restartStack(&stack);
 
     printf("%d\n", stackLenght(&stack));
     printf("%d\n", topStack(&stack)->key);
+    printf("Vazio: %d\n", isEmpty(&stack));
 
     showElements(&stack);
 
