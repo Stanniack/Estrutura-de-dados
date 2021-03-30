@@ -17,7 +17,7 @@ typedef int TYPEKEY;
  *  Remover elementos (No início)
  * */
 
-typedef struct {
+typedef struct aux {
     TYPEKEY key;
     struct aux* next;
 } ELEMENT;
@@ -28,7 +28,7 @@ typedef struct {
 } QUEUE;
 
 
-startQueue (QUEUE *queue) {
+void startQueue (QUEUE *queue) {
     queue->begin = NULL;
     queue->end = NULL;
 
@@ -57,7 +57,7 @@ void showElements (QUEUE *queue) {
     printf("\n");
 }
 
-ELEMENT* insertElement (QUEUE *queue, int key) {
+void insertElement (QUEUE *queue, int key) {
 
     ELEMENT *auxElement = (ELEMENT*) malloc(sizeof(ELEMENT));
     auxElement->key = key;
@@ -73,8 +73,6 @@ ELEMENT* insertElement (QUEUE *queue, int key) {
 
     /* O próximo elemento do último é null */
     queue->end->next = NULL;
-
-    return queue->end;
 
 }
 
@@ -93,7 +91,7 @@ int removeElement (QUEUE *queue) {
     if (queue->begin == NULL)
         queue->end = NULL;
 
-    //free(remove);
+    free(remove);
 
     return TRUE;
 }
@@ -104,7 +102,7 @@ int restartStack (QUEUE *queue) {
     while (aux->next != NULL) {
         ELEMENT *remove = aux->next;
         aux = aux->next;
-        //free(remove);
+        free(remove);
     }
 
     queue->begin = NULL;
