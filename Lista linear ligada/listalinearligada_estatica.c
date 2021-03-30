@@ -53,8 +53,6 @@ void insertElement (LIST *list, ELEMENT elementToInsert) {
         /* Atualiza index */
         list->availableIndex++;
 
-
-
     } else {
         /* Insere elemento no primeiro index disponivel */
         list->ELEMENT[list->availableIndex] = elementToInsert;
@@ -105,8 +103,6 @@ int linearSearch (LIST *list, int keyToSearch) {
 
     return INVALID;
 }
-
-
 
 int main () {
     LIST list;
