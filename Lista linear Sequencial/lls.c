@@ -90,12 +90,12 @@ int sentinelSearch (List *list, TYPEKEY keyToSearch) {
 /** Inserir elemento na lista pela posição indicada */
 int insertElementPos (List *list, REGISTER reg, int posToInsert) {
 
-    // A posi��o precisa existir e a lista n�o estiver cheia
+    // A posição precisa existir e a lista não estiver cheia
     if (list->elementsNumber != MAX && posToInsert >= 0 && posToInsert <= MAX) {
 
         int i;
 
-        // regra de inser��o (resposiciona os outros elementos)
+        // regra de inserção (resposiciona os outros elementos)
         for (i = list->elementsNumber; i > posToInsert; i--)
             list->REGISTER[i] = list->REGISTER[i - 1];
 
@@ -115,7 +115,7 @@ int insertElementPos (List *list, REGISTER reg, int posToInsert) {
 int insertElementAtBegin (List *list, REGISTER reg) {
     int i;
 
-    // A lista n�o estiver cheia
+    // A lista não estiver cheia
     if (list->elementsNumber != MAX) {
         for (i = list->elementsNumber; i > 0; i--)
             list->REGISTER[i] = list->REGISTER[i - 1];
@@ -146,7 +146,6 @@ int insertElementAtEnd (List *list, REGISTER reg) {
 
     return 1;
 }
-
 
 /** Remover elemento com busca sequencial */
 int removeElementLinear (List *list, TYPEKEY keyToRemove) {
@@ -225,7 +224,6 @@ void mockList (List *list) {
     int i;
 
     for (i = 0; i < MAX; i++) {
-        //printf("teste\n");
         REGISTER reg;
         reg.key = i;
         insertElementAtBegin(list, reg);
