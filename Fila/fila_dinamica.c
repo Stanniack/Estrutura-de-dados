@@ -57,9 +57,10 @@ void showElements (QUEUE *queue) {
     printf("\n");
 }
 
-ELEMENT* insertElement (QUEUE *queue, ELEMENT *element) {
+ELEMENT* insertElement (QUEUE *queue, int key) {
+
     ELEMENT *auxElement = (ELEMENT*) malloc(sizeof(ELEMENT));
-    auxElement = element;
+    auxElement->key = key;
 
     /* Se for nulo, o início aponta p o primeiro elemento da fila adicionado, senão ele é o prox elemento do último */
     if (queue->begin == NULL)
@@ -114,24 +115,19 @@ int restartStack (QUEUE *queue) {
 
 int main () {
     QUEUE queue;
-    ELEMENT element, element2, element3;
-
-    element.key = 10;
-    element2.key = 5;
-    element3.key = 8;
 
     startQueue(&queue);
-    insertElement(&queue, &element);
-    insertElement(&queue, &element2);
-    insertElement(&queue, &element3);
+    insertElement(&queue, 10);
+    insertElement(&queue, 5);
+    insertElement(&queue, 17);
 
-//    removeElement(&queue);
-//    removeElement(&queue);
-//    removeElement(&queue);
-
-//    showElements(&queue);
     removeElement(&queue);
-    restartStack(&queue);
+    //removeElement(&queue);
+    //removeElement(&queue);
+    //removeElement(&queue);
+    //restartStack(&queue);
+
+    showElements(&queue);
 
     //printf("I: %d F: %d\n", queue.begin->key, queue.end->key);
     printf("%d\n", queueLenght(&queue));
