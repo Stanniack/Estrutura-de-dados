@@ -57,18 +57,17 @@ void showElements (STACK *stack) {
     printf("\n");
 }
 
-void push (STACK *stack, ELEMENT *elementToInsert) {
+void push (STACK *stack, int key) {
 
-    /* Aloca memória */
-    ELEMENT *aux = (ELEMENT*) malloc(sizeof(ELEMENT));
-    /* Guarda o antigo topo */
-    aux = stack->top;
+    /* Aloca memória para novo elemento */
+    ELEMENT *elementToInsert = (ELEMENT*) malloc(sizeof(ELEMENT));
+    elementToInsert->key = key;
+
+    /* O antigo topo é o next */
+    elementToInsert->next = stack->top;
 
     /* O novo elemento é o topo*/
     stack->top = elementToInsert;
-
-    /* O antigo topo é o next */
-    elementToInsert->next = aux;
 
 }
 
@@ -103,25 +102,18 @@ void restartStack (STACK *stack) {
 }
 
 int main () {
-    ELEMENT ELEMENT, ELEMENT2, ELEMENT3, ELEMENT4;
     STACK stack;
 
-    ELEMENT.key = 5;
-    ELEMENT2.key = 7;
-    ELEMENT3.key = 2;
-    ELEMENT4.key = 10;
-
     startStack(&stack);
-    push(&stack, &ELEMENT);
-    push(&stack, &ELEMENT2);
-    push(&stack, &ELEMENT3);
-    //pop(&stack);
-    //push(&stack, &ELEMENT4);
-    //restartStack(&stack);
+    push(&stack, 5);
+    push(&stack, 7);
+    push(&stack, 10);
+    pop(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
+    restartStack(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
 
     printf("%d\n", stackLenght(&stack));
-    printf("%d\n", topStack(&stack)->key);
-    printf("Vazio: %d\n", isEmpty(&stack));
+    //printf("%d\n", topStack(&stack)->key);
+    //printf("Vazio: %d\n", isEmpty(&stack));
 
     showElements(&stack);
 
