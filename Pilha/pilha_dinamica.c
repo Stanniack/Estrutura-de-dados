@@ -46,6 +46,7 @@ int isEmpty (STACK *stack) {
     return stack->top == NULL ? TRUE : FALSE;
 }
 
+/* Função demonstrativa. Não existe em uma situação real. */
 void showElements (STACK *stack) {
     ELEMENT *element = stack->top;
 
@@ -84,8 +85,9 @@ int pop (STACK *stack) {
     return FALSE;
 }
 
-ELEMENT* topStack (STACK *stack) {
-    return stack->top != NULL ? stack->top : NULL;
+/* Jamais retornar um ponteiro, isso pode comprometer toda a estrutura */
+int topStack (STACK *stack) {
+    return stack->top != NULL ? stack->top->key : INVALID;
 }
 
 void restartStack (STACK *stack) {
@@ -108,10 +110,14 @@ int main () {
     push(&stack, 5);
     push(&stack, 7);
     push(&stack, 10);
-    pop(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
-    restartStack(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
+    //pop(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
+    //restartStack(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
 
-    printf("%d\n", stackLenght(&stack));
+    int el = topStack(&stack);
+    el = 11;
+    printf("%d\n", el);
+
+    //printf("%d\n", stackLenght(&stack));
     //printf("%d\n", topStack(&stack)->key);
     //printf("Vazio: %d\n", isEmpty(&stack));
 
