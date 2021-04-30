@@ -110,8 +110,8 @@ int main () {
     push(&stack, 5);
     push(&stack, 7);
     push(&stack, 10);
-    //pop(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
-    //restartStack(&stack); //- ERRO, COMPILADOR FICAR EM LOOPING OU RETORNA UM EXIT CODE != 0
+    pop(&stack);
+    restartStack(&stack);
 
     int el = topStack(&stack);
     el = 11;
